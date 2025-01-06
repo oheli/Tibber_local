@@ -568,10 +568,10 @@ class TibberLocalBridge:
                 _LOGGER.error(f"a_obis is `None`. Cannot compute number calc.")
                 return
             if hasattr(a_obis, "scaler") and a_obis.scaler:
-                value = int(a_obis.value) * 10**a_obis.scaler
+                value = float(a_obis.value) * 10**a_obis.scaler
             else:
-                value = int(a_obis.value)
-            return int(value) / divisor
+                value = float(a_obis.value)
+            return value / divisor
 
     def _get_str_internal(self, key):
         if key in self._obis_values:
