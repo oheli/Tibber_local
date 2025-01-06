@@ -40,6 +40,7 @@ from .const import (
 )
 
 logging.basicConfig(
+    # TODO logging to file not working
     filename="tibber_local.log",
     filemode="a",
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",  # Log format
@@ -561,20 +562,16 @@ class TibberLocalBridge:
             return val
 
         if key in self._obis_values:
-            a_obis: SmlListEntry | None = self._obis_values.get(key, None)
-            if not a_obis:
-                raise Exception("`a_obis` is None. This should not be reached?")
+            a_obis = self._obis_values[key]
+            value = 0
+            if a_obis.value is None:
+                _LOGGER.error(f"a_obis is `None`. Cannot compute number calc.")
+                return
             if hasattr(a_obis, "scaler") and a_obis.scaler:
-                return a_obis.value * 10**a_obis.scaler / divisor
+                value = int(a_obis.value) * 10**a_obis.scaler
             else:
-                if a_obis.value is None:
-                    _LOGGER.error(f"a_obis is `None`. Cannot compute number calc.")
-                elif isinstance(a_obis.value, str):
-                    _LOGGER.error(
-                        f"a_obis is '{a_obis}' which is a string. Cannot compute number calc."
-                    )
-                else:
-                    return a_obis.value / divisor
+                value = int(a_obis.value)
+            return int(value) / divisor
 
     def _get_str_internal(self, key):
         if key in self._obis_values:
