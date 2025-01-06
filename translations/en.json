@@ -1,0 +1,105 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Integration is already configured"
+    },
+    "error": {
+      "login_failed": "Login failed - please check host and/or password",
+      "cannot_connect": "Failed to connect",
+      "unknown": "Unknown error",
+      "no_data": "Could not read any data from device",
+      "unknown_mode": "Please check the IP/host or the provided Node Number - if you are sure that your information is correct, then the Tibber Pulse is communicating via an not-yet-implemented protocol - please create DEBUG log output and open an issue@github - I need sample data - TIA"
+    },
+    "step": {
+      "user": {
+        "description": "Please specify the local connection information for your Tibber Pulse Bridge.\n\n\nYou must have enabled the 'webserver_force_enable' flag!\n\n\nIf you need help with the configuration have a look at: https://github.com/marq24/ha-tibber-pulse-local",
+        "data": {
+          "name": "Display name",
+          "host": "IP or hostname of the Tibber Pulse Bridge",
+          "password": "Your bridge password - [You find the password on the Tibber Bridge - below the QR-Code]",
+          "scan_interval": "Polling Interval in seconds",
+          "node_num": "Node Number (expert setting)"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "user": {
+        "description": "If you need help with the configuration have a look here: https://github.com/marq24/ha-tibber-pulse-local",
+        "data": {
+          "name": "Display name",
+          "host": "IP or hostname of the Tibber Pulse Bridge",
+          "password": "Your bridge password - [You find the password on the Tibber Bridge - below the QR-Code]",
+          "scan_interval": "Polling Interval in seconds",
+          "node_num": "Node Number (expert setting)",
+          "ignore_errors": "Do not LOG errors or warnings while parsing data"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "0100010800ff": {
+        "name": "Import total"
+      },
+      "0100020800ff": {
+        "name": "Export total"
+      },
+      "0100010800ff_in_k": {
+        "name": "Import total (kWh)"
+      },
+      "0100020800ff_in_k": {
+        "name": "Export total (kWh)"
+      },
+      "0100100700ff": {
+        "name": "Power (actual)"
+      },
+      "0100240700ff": {
+        "name": "Power L1"
+      },
+      "0100380700ff": {
+        "name": "Power L2"
+      },
+      "01004c0700ff": {
+        "name": "Power L3"
+      },
+      "0100200700ff": {
+        "name": "Potential L1"
+      },
+      "0100340700ff": {
+        "name": "Potential L2"
+      },
+      "0100480700ff": {
+        "name": "Potential L3"
+      },
+      "01001f0700ff": {
+        "name": "Current L1"
+      },
+      "0100330700ff": {
+        "name": "Current L2"
+      },
+      "0100470700ff": {
+        "name": "Current L3"
+      },
+      "01000e0700ff": {
+        "name": "Net frequency"
+      },
+      "0100510701ff": {
+        "name": "Potential Phase deviation L1/L2"
+      },
+      "0100510702ff": {
+        "name": "Potential Phase deviation L1/L3"
+      },
+      "0100510704ff": {
+        "name": "Current/Potential L1 Phase deviation"
+      },
+      "010051070fff": {
+        "name": "Current/Potential L2 Phase deviation"
+      },
+      "010051071aff": {
+        "name": "Current/Potential L3 Phase deviation"
+      }
+    }
+  }
+}
